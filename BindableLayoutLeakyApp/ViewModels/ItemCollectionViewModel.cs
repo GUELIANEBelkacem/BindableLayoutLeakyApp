@@ -64,9 +64,9 @@ namespace BindableLayoutLeakyApp.ViewModels
                     {
                         _inMemoryItemCount = ItemViewModel.InstanceCount;
                         _inMemorySubItemCount = SubItemViewModel.InstanceCount;
-                        _inMemoryCollectionViewPageCount = CollectionView_NoLeak_Page.InstanceCount;
-                        _inMemoryBindableLayoutPageCount = BindableLayout_Leaky_Page.InstanceCount;
-                        _inMemoryNestedBindableLayoutPageCount = NestedBindableLayout_Leaky_Page.InstanceCount;
+                        _inMemoryCollectionViewPageCount = CollectionView_VMLeak_Page.InstanceCount;
+                        _inMemoryBindableLayoutPageCount = BindableLayout_VMLeak_Page.InstanceCount;
+                        _inMemoryNestedBindableLayoutPageCount = NestedBindableLayout_PageLeak_Page.InstanceCount;
 
                         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(InMemoryItemCount)));
                         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(InMemorySubItemCount)));

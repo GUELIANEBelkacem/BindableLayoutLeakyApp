@@ -29,9 +29,9 @@ namespace BindableLayoutLeakyApp
 
                         itemsLabel.Text = $"{ItemViewModel.InstanceCount}";
                         subItemsLabel.Text = $"{SubItemViewModel.InstanceCount}";
-                        cvLabel.Text = $"{CollectionView_NoLeak_Page.InstanceCount}";
-                        blLabel.Text = $"{BindableLayout_Leaky_Page.InstanceCount}";
-                        nblLabel.Text = $"{NestedBindableLayout_Leaky_Page.InstanceCount}";
+                        cvLabel.Text = $"{CollectionView_VMLeak_Page.InstanceCount}";
+                        blLabel.Text = $"{BindableLayout_VMLeak_Page.InstanceCount}";
+                        nblLabel.Text = $"{NestedBindableLayout_PageLeak_Page.InstanceCount}";
                         collectionsLabel.Text = $"{ItemCollectionViewModel.InstanceCount}"; 
                          
 
@@ -44,17 +44,17 @@ namespace BindableLayoutLeakyApp
 
         private async void NewCollectionViewPage_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CollectionView_NoLeak_Page());
+            await Navigation.PushAsync(new CollectionView_VMLeak_Page());
         }
 
         private async void NewBindableLayoutPage_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new BindableLayout_Leaky_Page());
+            await Navigation.PushAsync(new BindableLayout_VMLeak_Page());
         }
 
         private async void NewNestedBindableLayoutPage_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NestedBindableLayout_Leaky_Page());
+            await Navigation.PushAsync(new NestedBindableLayout_PageLeak_Page());
         }
     }
 

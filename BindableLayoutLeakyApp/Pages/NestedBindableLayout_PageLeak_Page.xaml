@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="BindableLayoutLeakyApp.Pages.NestedBindableLayout_Leaky_Page"
+<ContentPage x:Class="BindableLayoutLeakyApp.Pages.NestedBindableLayout_PageLeak_Page"
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mtk="clr-namespace:MemoryToolkit.Maui;assembly=MemoryToolkit.Maui"
@@ -18,21 +18,26 @@
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="viewModels:ItemViewModel">
                     <Grid RowDefinitions="20,20, *">
-                        <BoxView Grid.Row="0"
-                                 Grid.Column="0"
-                                 HeightRequest="20"
-                                 WidthRequest="20"
-                                 BackgroundColor="{Binding MyColor}" />
-
-                        <Label Grid.Row="1" Grid.Column="0" Text="{Binding ItemName}" />
+                        <Grid HeightRequest="40" BackgroundColor="LightCoral" ColumnDefinitions="20, 100" ColumnSpacing="20">
+                            <BoxView Grid.Row="0"
+                                     Grid.Column="0"
+                                     HeightRequest="20"
+                                     WidthRequest="20"
+                                     BackgroundColor="{Binding MyColor}" />
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding ItemName}" VerticalTextAlignment="Center" />
+                        </Grid>
 
                         <HorizontalStackLayout Grid.Row="2" Grid.Column="0" BindableLayout.ItemsSource="{Binding SubItems}" Spacing="20">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate x:DataType="viewModels:SubItemViewModel">
-                                    <HorizontalStackLayout Spacing="20">
-                                        <BoxView HeightRequest="20" WidthRequest="20" BackgroundColor="{Binding MyColor}" />
-                                        <Label Text="{Binding SubItemName}" />
-                                    </HorizontalStackLayout>
+                                    <Grid HeightRequest="40" BackgroundColor="AliceBlue" ColumnDefinitions="20, 100" ColumnSpacing="20">
+                                        <BoxView Grid.Row="0"
+                                                 Grid.Column="0"
+                                                 HeightRequest="20"
+                                                 WidthRequest="20"
+                                                 BackgroundColor="{Binding MyColor}" />
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding SubItemName}" VerticalTextAlignment="Center" />
+                                    </Grid>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </HorizontalStackLayout>
@@ -45,11 +50,11 @@
 
 
         <VerticalStackLayout Grid.Row="1" Grid.Column="0" Spacing="10">
-            <Button Clicked="NewCollectionViewPage_Clicked" Text="Push new CollectionView (No leaks) Page" />
+            <Button Clicked="NewCollectionViewPage_Clicked" Text="Push new CollectionView Page (ViewModel leak)" />
 
-            <Button Clicked="NewBindableLayoutPage_Clicked" Text="Push new BindableLayout (No leaks) Page" />
+            <Button Clicked="NewBindableLayoutPage_Clicked" Text="Push new BindableLayout Page (ViewModel leak)" />
 
-            <Button Clicked="NewNestedBindableLayoutPage_Clicked" Text="Push new Nested BindableLayout (leaky) Page" />
+            <Button Clicked="NewNestedBindableLayoutPage_Clicked" Text="Push new BindableLayout inside CarouselView Page (Page leak)" />
 
             <Label Text="{Binding InMemoryItemCount}" />
             <Label Text="{Binding InMemorySubItemCount}" />

@@ -66,13 +66,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\BindableLayout_Leaky_Page.xaml">
+	  <Compile Update="Pages\BindableLayout_VMLeak_Page.xaml.cs">
+	    <DependentUpon>BindableLayout_VMLeak_Page.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\CollectionView_VMLeak_Page.xaml.cs">
+	    <DependentUpon>CollectionView_VMLeak_Page.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\NestedBindableLayout_PageLeak_Page.xaml.cs">
+	    <DependentUpon>NestedBindableLayout_PageLeak_Page.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\BindableLayout_VMLeak_Page.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\CollectionView_NoLeak_Page.xaml">
+	  <MauiXaml Update="Pages\CollectionView_VMLeak_Page.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\NestedBindableLayout_Leaky_Page.xaml">
+	  <MauiXaml Update="Pages\NestedBindableLayout_PageLeak_Page.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

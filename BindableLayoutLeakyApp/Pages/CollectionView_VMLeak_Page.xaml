@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="BindableLayoutLeakyApp.Pages.BindableLayout_Leaky_Page"
+<ContentPage x:Class="BindableLayoutLeakyApp.Pages.CollectionView_VMLeak_Page"
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mtk="clr-namespace:MemoryToolkit.Maui;assembly=MemoryToolkit.Maui"
              xmlns:viewModels="clr-namespace:BindableLayoutLeakyApp.ViewModels"
-             Title="BindableLayout_Leaky_Page"
+             Title="CollectionView_NoLeak_Page"
              mtk:LeakMonitorBehavior.Cascade="True">
 
     <ContentPage.BindingContext>
@@ -13,25 +13,24 @@
 
     <Grid x:DataType="viewModels:ItemCollectionViewModel" ColumnDefinitions="*" RowDefinitions="700,*" RowSpacing="10">
 
-        <FlexLayout Grid.Row="0" Grid.Column="0" BindableLayout.ItemsSource="{Binding Items}" Wrap="Wrap">
-            <BindableLayout.ItemTemplate>
+        <CollectionView Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Items}">
+            <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="viewModels:ItemViewModel">
-                    <HorizontalStackLayout WidthRequest="100" Spacing="10">
+                    <HorizontalStackLayout Spacing="20">
                         <BoxView HeightRequest="20" WidthRequest="20" BackgroundColor="{Binding MyColor}" />
                         <Label Text="{Binding ItemName}" />
                     </HorizontalStackLayout>
-
                 </DataTemplate>
-            </BindableLayout.ItemTemplate>
-        </FlexLayout>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
 
         <VerticalStackLayout Grid.Row="1" Grid.Column="0" Spacing="10">
-            <Button Clicked="NewCollectionViewPage_Clicked" Text="Push new CollectionView (No leaks) Page" />
+            <Button Clicked="NewCollectionViewPage_Clicked" Text="Push new CollectionView Page (ViewModel leak)" />
 
-            <Button Clicked="NewBindableLayoutPage_Clicked" Text="Push new BindableLayout (No leaks) Page" />
+            <Button Clicked="NewBindableLayoutPage_Clicked" Text="Push new BindableLayout Page (ViewModel leak)" />
 
-            <Button Clicked="NewNestedBindableLayoutPage_Clicked" Text="Push new Nested BindableLayout (leaky) Page" />
+            <Button Clicked="NewNestedBindableLayoutPage_Clicked" Text="Push new BindableLayout inside CarouselView Page (Page leak)" />
 
             <Label Text="{Binding InMemoryItemCount}" />
             <Label Text="{Binding InMemorySubItemCount}" />
@@ -39,7 +38,6 @@
             <Label Text="{Binding InMemoryBindableLayoutPageCount}" />
             <Label Text="{Binding InMemoryNestedBindableLayoutPageCount}" />
         </VerticalStackLayout>
-
     </Grid>
 
 </ContentPage>
