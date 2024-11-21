@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="BindableLayoutLeakyApp.Pages.NestedBindableLayout_Leaky_Page"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mtk="clr-namespace:MemoryToolkit.Maui;assembly=MemoryToolkit.Maui"
+             xmlns:viewModels="clr-namespace:BindableLayoutLeakyApp.ViewModels"
+             Title="NestedBindableLayout_Leaky_Page"
+             mtk:LeakMonitorBehavior.Cascade="True">
+
+
+    <ContentPage.BindingContext>
+        <viewModels:ItemCollectionViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid x:DataType="viewModels:ItemCollectionViewModel" ColumnDefinitions="*" RowDefinitions="700,*" RowSpacing="10">
+
+        <CarouselView Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Items}">
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="viewModels:ItemViewModel">
+                    <Grid RowDefinitions="20,20, *">
+                        <BoxView Grid.Row="0"
+                                 Grid.Column="0"
+                                 HeightRequest="20"
+                                 WidthRequest="20"
+                                 BackgroundColor="{Binding MyColor}" />
+
+                        <Label Grid.Row="1" Grid.Column="0" Text="{Binding ItemName}" />
+
+                        <HorizontalStackLayout Grid.Row="2" Grid.Column="0" BindableLayout.ItemsSource="{Binding SubItems}" Spacing="20">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="viewModels:SubItemViewModel">
+                                    <HorizontalStackLayout Spacing="20">
+                                        <BoxView HeightRequest="20" WidthRequest="20" BackgroundColor="{Binding MyColor}" />
+                                        <Label Text="{Binding SubItemName}" />
+                                    </HorizontalStackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </HorizontalStackLayout>
+                    </Grid>
+
+
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+
+        <VerticalStackLayout Grid.Row="1" Grid.Column="0" Spacing="10">
+            <Button Clicked="NewCollectionViewPage_Clicked" Text="Push new CollectionView (No leaks) Page" />
+
+            <Button Clicked="NewBindableLayoutPage_Clicked" Text="Push new BindableLayout (No leaks) Page" />
+
+            <Button Clicked="NewNestedBindableLayoutPage_Clicked" Text="Push new Nested BindableLayout (leaky) Page" />
+
+            <Label Text="{Binding InMemoryItemCount}" />
+            <Label Text="{Binding InMemorySubItemCount}" />
+            <Label Text="{Binding InMemoryCollectionViewPageCount}" />
+            <Label Text="{Binding InMemoryBindableLayoutPageCount}" />
+            <Label Text="{Binding InMemoryNestedBindableLayoutPageCount}" />
+        </VerticalStackLayout>
+    </Grid>
+
+</ContentPage>
