@@ -49,11 +49,16 @@ namespace BindableLayoutLeakyApp.ViewModels
         {
             InstanceCount--;
         }
+        private bool _keepAlive = true;
+        public void KillCountUpdateThread()
+        {
+            _keepAlive = false;
+        }
         private void StartCountUpdateThread()
         {
             Task.Run(async () =>
             {
-                while (true)
+                while (_keepAlive)
                 {
                     await Task.Delay(1000);
                     GC.Collect();

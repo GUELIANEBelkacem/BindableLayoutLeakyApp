@@ -5,7 +5,8 @@
              xmlns:mtk="clr-namespace:MemoryToolkit.Maui;assembly=MemoryToolkit.Maui"
              xmlns:viewModels="clr-namespace:BindableLayoutLeakyApp.ViewModels"
              Title="BindableLayout_Leaky_Page"
-             mtk:LeakMonitorBehavior.Cascade="True">
+             mtk:LeakMonitorBehavior.Cascade="True"
+             NavigatedFrom="ContentPage_NavigatedFrom">
 
     <ContentPage.BindingContext>
         <viewModels:ItemCollectionViewModel />

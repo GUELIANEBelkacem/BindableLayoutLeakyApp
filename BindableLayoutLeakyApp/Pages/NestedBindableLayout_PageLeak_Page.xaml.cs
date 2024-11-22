@@ -1,3 +1,5 @@
+using BindableLayoutLeakyApp.ViewModels;
+
 namespace BindableLayoutLeakyApp.Pages;
 
 public partial class NestedBindableLayout_PageLeak_Page : ContentPage
@@ -27,4 +29,12 @@ public partial class NestedBindableLayout_PageLeak_Page : ContentPage
         await Navigation.PushAsync(new NestedBindableLayout_PageLeak_Page());
     }
 
+    private void ContentPage_NavigatedFrom(object sender, EventArgs e)
+    {
+        ItemCollectionViewModel? vm = BindingContext as ItemCollectionViewModel;
+        if (vm != null)
+        {
+            vm.KillCountUpdateThread();
+        }
+    }
 }
