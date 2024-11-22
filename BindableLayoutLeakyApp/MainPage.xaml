@@ -6,11 +6,11 @@
         <VerticalStackLayout Padding="30,0" Spacing="25">
             <Image HeightRequest="185" Aspect="AspectFit" SemanticProperties.Description="dot net bot in a hovercraft number nine" Source="dotnet_bot.png" />
 
-            <Button Clicked="NewCollectionViewPage_Clicked" Text="Push new CollectionView Page (ViewModel leak)" />
+            <Button Clicked="NewCollectionViewPage_Clicked" Text="Push new CollectionView Page (No Leaks)" />
 
-            <Button Clicked="NewBindableLayoutPage_Clicked" Text="Push new BindableLayout Page (ViewModel leak)" />
+            <Button Clicked="NewBindableLayoutPage_Clicked" Text="Push new BindableLayout Page (No Leaks)" />
 
-            <Button Clicked="NewNestedBindableLayoutPage_Clicked" Text="Push new BindableLayout inside CarouselView Page (Page leak)" />
+            <Button Clicked="NewNestedBindableLayoutPage_Clicked" Text="Push new BindableLayout inside CarouselView Page (Leaky on IOS)" />
 
             <Label FontAttributes="Bold" FontSize="Large" Text="Still in memory:" />
 

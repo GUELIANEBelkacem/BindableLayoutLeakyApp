@@ -27,11 +27,11 @@
 
 
         <VerticalStackLayout Grid.Row="1" Grid.Column="0" Spacing="10">
-            <Button Clicked="NewCollectionViewPage_Clicked" Text="Push new CollectionView Page (ViewModel leak)" />
+            <Button Clicked="NewCollectionViewPage_Clicked" Text="Push new CollectionView Page (No Leaks)" />
 
-            <Button Clicked="NewBindableLayoutPage_Clicked" Text="Push new BindableLayout Page (ViewModel leak)" />
+            <Button Clicked="NewBindableLayoutPage_Clicked" Text="Push new BindableLayout Page (No Leaks)" />
 
-            <Button Clicked="NewNestedBindableLayoutPage_Clicked" Text="Push new BindableLayout inside CarouselView Page (Page leak)" />
+            <Button Clicked="NewNestedBindableLayoutPage_Clicked" Text="Push new BindableLayout inside CarouselView Page (Leaky on IOS)" />
 
             <Label Text="{Binding InMemoryItemCount}" />
             <Label Text="{Binding InMemorySubItemCount}" />
